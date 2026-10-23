@@ -88,6 +88,7 @@ nav a {
   color: var(--dialog-white);
   text-decoration: none;
   padding: 8px 4px;
+  position: relative;
 }
 
 nav a:hover,
@@ -96,8 +97,15 @@ nav a:focus-visible {
   outline: none;
 }
 
+nav a[aria-current='page'] {
+  color: var(--seat-yellow);
+  box-shadow: inset 0 calc(-1 * var(--pixel)) 0 var(--beanie-orange);
+}
+
 nav a::before {
-  content: '▶ ';
+  content: '▶';
+  position: absolute;
+  right: calc(100% + 4px);
   color: transparent;
 }
 

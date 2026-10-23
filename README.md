@@ -10,7 +10,7 @@ All of the page's text and links are in **`content.json`**. To change them:
 2. Change only the text inside the quotes. Keep the quotes, commas and brackets as they are.
 3. Click **Commit changes**. The site updates within a minute or two.
 
-To swap the hero image, replace `assets/hero.gif` with a new file that has the same name.
+To swap the hero image, replace `assets/hero.gif` with a new file that has the same name. The menu hover sound works the same way: replace `assets/sounds/menu-select.mp3`.
 
 ## Previewing locally
 
@@ -18,8 +18,12 @@ To swap the hero image, replace `assets/hero.gif` with a new file that has the s
 python3 -m http.server 8000
 ```
 
-Then open http://localhost:8000. Opening `index.html` directly from disk shows only the fallback text, because browsers won't load `content.json` from a `file://` page.
+Then open http://localhost:8000. Opening `index.html` directly from disk shows a blank page, because browsers won't load `content.json` from a `file://` page.
 
 ## Hosting
 
 The site is hosted on GitHub Pages: **Settings → Pages → Deploy from branch → `main` / root**.
+
+## Credits
+
+Menu select sound: ["Menu Choice" by Sudocolon](https://opengameart.org/content/menu-choice), CC0.

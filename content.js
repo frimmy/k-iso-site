@@ -18,5 +18,6 @@ fetch('content.json')
         el.textContent = value;
       }
     });
-  })
-  .catch(() => {});
+
+    document.dispatchEvent(new Event('content:ready'));
+  });
