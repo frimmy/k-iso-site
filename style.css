@@ -44,6 +44,9 @@ main {
 
 /* Mirrors the black-box/white-border dialog in the GIF */
 .dialog {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   max-width: 720px;
   margin: 40px auto 0;
   padding: 24px 28px;
@@ -53,7 +56,7 @@ main {
 }
 
 h1 {
-  margin: 0 0 16px;
+  margin: 0;
   font-family: 'Press Start 2P', monospace;
   font-size: clamp(1.25rem, 4vw, 2rem);
   color: var(--seat-yellow);
@@ -64,12 +67,14 @@ h1 {
 .tagline {
   font-family: 'Press Start 2P', monospace;
   font-size: clamp(0.75rem, 2vw, 1rem);
-  margin: 0 0 16px;
 }
 
-.dialog p:last-child { margin-bottom: 0; }
+.dialog p { margin: 0; }
+
+.dialog :empty { display: none; }
 
 footer {
+  position: relative;
   border-top: var(--pixel) solid var(--car-blue);
   background: var(--bg-deep);
   padding: 20px 16px;
@@ -112,4 +117,53 @@ nav a::before {
 nav a:hover::before,
 nav a:focus-visible::before {
   color: var(--beanie-orange);
+}
+
+.sound-toggle {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 2px;
+  background: none;
+  border: var(--pixel) solid transparent;
+  color: var(--dialog-white);
+  cursor: pointer;
+}
+
+.sound-toggle svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+  shape-rendering: crispEdges;
+}
+
+.sound-toggle:hover,
+.sound-toggle:focus-visible {
+  color: var(--seat-yellow);
+  border-color: var(--beanie-orange);
+  outline: none;
+}
+
+.sound-toggle[aria-pressed='true'] .muted,
+.sound-toggle[aria-pressed='false'] .waves {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .sound-toggle {
+    position: static;
+    transform: none;
+  }
 }

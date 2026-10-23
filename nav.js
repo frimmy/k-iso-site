@@ -2,6 +2,10 @@ const nav = document.querySelector('nav');
 const selectSound = new Audio('assets/sounds/menu-select.mp3');
 selectSound.volume = 0.5;
 
+const soundToggle = document.querySelector('.sound-toggle');
+const SOUND_PREF_KEY = 'k-iso:sound';
+let soundOn = true;
+
 let lastTarget = null;
 
 const links = () => [...nav.querySelectorAll('a')];
@@ -26,9 +30,20 @@ function select(event) {
   lastTarget = link;
   if (link.hasAttribute('aria-current')) return;
 
+  playSelect();
+}
+
+function playSelect() {
+  if (!soundOn) return;
+
   selectSound.currentTime = 0;
   // Browsers block audio until the visitor has clicked or pressed a key on the page.
   selectSound.play().catch(() => {});
+}
+
+function setSound(on) {
+  soundOn = on;
+  soundToggle.setAttribute('aria-pressed', String(on));
 }
 
 function moveFocus(event) {
@@ -48,6 +63,19 @@ nav.addEventListener('focusout', (event) => {
   if (!nav.contains(event.relatedTarget)) lastTarget = null;
 });
 nav.addEventListener('keydown', moveFocus);
+
+// Storage can throw in private windows or with site data blocked; the toggle still works per visit.
+try {
+  setSound(localStorage.getItem(SOUND_PREF_KEY) !== 'off');
+} catch {}
+
+soundToggle.addEventListener('click', () => {
+  setSound(!soundOn);
+  playSelect();
+  try {
+    localStorage.setItem(SOUND_PREF_KEY, soundOn ? 'on' : 'off');
+  } catch {}
+});
 
 document.addEventListener('content:ready', markCurrent);
 window.addEventListener('hashchange', markCurrent);
