@@ -1,0 +1,107 @@
+/* Palette sampled from assets/hero.gif */
+:root {
+  --bg: #1d1b3a;
+  --bg-deep: #141229;
+  --car-blue: #5b8fe6;
+  --seat-yellow: #f5d90a;
+  --beanie-orange: #e8892b;
+  --dialog-black: #000;
+  --dialog-white: #ededed;
+  --pixel: 4px;
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; }
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(var(--bg), var(--bg-deep));
+  color: var(--dialog-white);
+  font-family: 'VT323', monospace;
+  font-size: 1.5rem;
+  line-height: 1.3;
+}
+
+main {
+  flex: 1;
+  width: 100%;
+  max-width: 750px;
+  margin: 0 auto;
+  padding: 32px 16px;
+}
+
+.hero {
+  display: block;
+  width: 100%;
+  height: auto;
+  image-rendering: pixelated;
+  border: var(--pixel) solid var(--dialog-white);
+  box-shadow: 0 0 0 var(--pixel) var(--dialog-black), 8px 8px 0 var(--pixel) var(--dialog-black);
+}
+
+/* Mirrors the black-box/white-border dialog in the GIF */
+.dialog {
+  max-width: 720px;
+  margin: 40px auto 0;
+  padding: 24px 28px;
+  background: var(--dialog-black);
+  border: var(--pixel) solid var(--dialog-white);
+  text-align: center;
+}
+
+h1 {
+  margin: 0 0 16px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(1.25rem, 4vw, 2rem);
+  color: var(--seat-yellow);
+  text-shadow: var(--pixel) var(--pixel) 0 var(--beanie-orange);
+  letter-spacing: 2px;
+}
+
+.tagline {
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(0.75rem, 2vw, 1rem);
+  margin: 0 0 16px;
+}
+
+.dialog p:last-child { margin-bottom: 0; }
+
+footer {
+  border-top: var(--pixel) solid var(--car-blue);
+  background: var(--bg-deep);
+  padding: 20px 16px;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px clamp(8px, 4vw, 40px);
+}
+
+nav a {
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(0.65rem, 2.5vw, 0.8rem);
+  color: var(--dialog-white);
+  text-decoration: none;
+  padding: 8px 4px;
+}
+
+nav a:hover,
+nav a:focus-visible {
+  color: var(--seat-yellow);
+  outline: none;
+}
+
+nav a::before {
+  content: '▶ ';
+  color: transparent;
+}
+
+nav a:hover::before,
+nav a:focus-visible::before {
+  color: var(--beanie-orange);
+}
