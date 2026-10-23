@@ -1,7 +1,7 @@
 {
-  "title": "TODO: name",
+  "title": "WIP: Kevin Iso",
   "tagline": "Stand clear of the closing doors, please.",
-  "intro": "This is a placeholder intro. Edit content.json to change any text on this page.",
+  "intro": "",
   "links": [
     { "label": "Home", "url": "./" },
     { "label": "Projects", "url": "#projects" },
