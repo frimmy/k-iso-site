@@ -20,9 +20,9 @@ python3 -m http.server 8000
 
 Then open http://localhost:8000. Opening `index.html` directly from disk shows a blank page, because browsers won't load `content.json` from a `file://` page.
 
-## Comparing background palettes
+## Comparing backgrounds and fonts
 
-The **BG** button in the bottom-right corner cycles through the candidate backgrounds: `slate` (the default), `navy`, `dusk` and `original`. It's temporary and comes out once a palette is picked.
+The **Font** button in the bottom-left corner cycles the body font between `vt323`, `plex` (IBM Plex Mono), `dm-mono` and `pixelify` (Pixelify Sans). The **BG** button next to it cycles through the candidate backgrounds: `slate` (the default), `navy`, `dusk` and `original`. Both buttons are temporary and come out once a choice is made.
 
 ## Hosting
 
