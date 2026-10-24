@@ -13,7 +13,7 @@ let soundOn = false;
 let lastTarget = null;
 
 const links = () => [...nav.querySelectorAll('a')];
-// Ignores the query string so demo links like ?palette=navy still highlight the current page.
+// Ignores the query string so links with tracking params (e.g. ?utm_source=) still highlight the current page.
 const pageKey = ({ pathname, hash }) => pathname.replace(/index\.html$/, '') + hash;
 
 function markCurrent() {

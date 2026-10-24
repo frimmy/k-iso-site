@@ -24,7 +24,7 @@
 ## Look and sound
 
 - **Style:** 90s/early-00s game aesthetic. Press Start 2P for UI, VT323 for body text, and a black-box dialog like the one in the GIF. The direction is toward more minimalism.
-- **Background:** subdued, mature takes on the GIF's blue. Three candidates can be compared with `?demo` (see below), and one gets picked after feedback.
+- **Background:** subdued, mature takes on the GIF's blue. Three candidates can be compared with the temporary **BG** button, and one gets picked after feedback.
 - **Theme:** dark, light and system modes, switched from the header.
 - **Nav:** in the header. Small text, with the current page highlighted.
 - **Audio:**

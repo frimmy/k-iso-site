@@ -215,30 +215,24 @@ h1 {
 
 .dialog :empty { display: none; }
 
-.palette-picker {
+.palette-button {
   position: fixed;
   right: 16px;
   bottom: 16px;
-  display: flex;
-  gap: 4px;
-  padding: 6px;
-  background: var(--dialog-black);
-  border: 2px solid var(--dialog-white);
-}
-
-.palette-picker button {
-  padding: 6px 8px;
+  padding: 8px 10px;
   font-family: 'Press Start 2P', monospace;
   font-size: 0.5rem;
   color: var(--dialog-white);
-  background: none;
-  border: 2px solid transparent;
+  background: var(--dialog-black);
+  border: 2px solid var(--dialog-white);
   cursor: pointer;
 }
 
-.palette-picker button[aria-pressed='true'] {
+.palette-button:hover,
+.palette-button:focus-visible {
   color: var(--seat-yellow);
   border-color: var(--beanie-orange);
+  outline: none;
 }
 
 @media (max-width: 520px) {

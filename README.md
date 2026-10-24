@@ -22,7 +22,7 @@ Then open http://localhost:8000. Opening `index.html` directly from disk shows a
 
 ## Comparing background palettes
 
-Add `?demo` to the URL to show a palette switcher in the corner. A specific palette can be linked directly, e.g. `?palette=navy`. The choices are `original`, `slate` (the default), `navy` and `dusk`.
+The **BG** button in the bottom-right corner cycles through the candidate backgrounds: `slate` (the default), `navy`, `dusk` and `original`. It's temporary and comes out once a palette is picked.
 
 ## Hosting
 

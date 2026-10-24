@@ -3,7 +3,6 @@ const THEMES = ['system', 'light', 'dark'];
 const PALETTES = ['original', 'slate', 'navy', 'dusk'];
 
 const root = document.documentElement;
-const params = new URLSearchParams(location.search);
 
 // Storage can throw in private windows or with site data blocked; fall back to the system theme.
 function savedTheme() {
@@ -28,39 +27,28 @@ function applyTheme(theme) {
   }
 }
 
+// Temporary demo control for comparing backgrounds; remove once a palette is picked.
+let currentPalette = 'slate';
+
 function applyPalette(palette) {
-  root.dataset.palette = PALETTES.includes(palette) ? palette : 'slate';
+  currentPalette = palette;
+  root.dataset.palette = palette;
+
+  const button = document.querySelector('.palette-button');
+  if (button) button.textContent = `BG: ${palette}`;
 }
 
 let currentTheme = savedTheme();
 applyTheme(currentTheme);
-applyPalette(params.get('palette'));
-
-function buildPalettePicker() {
-  const picker = document.createElement('div');
-  picker.className = 'palette-picker';
-  picker.setAttribute('role', 'group');
-  picker.setAttribute('aria-label', 'Background palette (demo)');
-
-  PALETTES.forEach((palette) => {
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.textContent = palette;
-    button.setAttribute('aria-pressed', String(root.dataset.palette === palette));
-    button.addEventListener('click', () => {
-      applyPalette(palette);
-      params.set('palette', palette);
-      history.replaceState(null, '', `?${params}${location.hash}`);
-      picker.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
-    });
-    picker.append(button);
-  });
-
-  document.body.append(picker);
-}
+applyPalette(currentPalette);
 
 document.addEventListener('DOMContentLoaded', () => {
   applyTheme(currentTheme);
+  applyPalette(currentPalette);
+
+  document.querySelector('.palette-button').addEventListener('click', () => {
+    applyPalette(PALETTES[(PALETTES.indexOf(currentPalette) + 1) % PALETTES.length]);
+  });
 
   document.querySelector('.theme-toggle').addEventListener('click', () => {
     currentTheme = THEMES[(THEMES.indexOf(currentTheme) + 1) % THEMES.length];
@@ -69,6 +57,4 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch {}
     applyTheme(currentTheme);
   });
-
-  if (params.has('demo')) buildPalettePicker();
 });
