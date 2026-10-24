@@ -7,45 +7,18 @@
   --dialog-white: #ededed;
   --pixel: 4px;
 
-  /* Each palette sets a dark (-d) and light (-l) pair; the theme picks which pair is live. */
-  --bg-d: #1e252d;
-  --bg-deep-d: #161b21;
-  --bg-l: #eef1f4;
-  --bg-deep-l: #e2e7ec;
-
-  --bg: var(--bg-d);
-  --bg-deep: var(--bg-deep-d);
+  --bg: #26263a;
+  --bg-deep: #1c1c2c;
   --text: #e6e8eb;
   --text-accent: var(--seat-yellow);
   --rule: rgb(255 255 255 / 0.12);
   --frame: var(--dialog-white);
 }
 
-:root[data-palette='original'] {
-  --bg-d: #1d1b3a;
-  --bg-deep-d: #141229;
-  --bg-l: #ebeaf6;
-  --bg-deep-l: #dddbf0;
-}
-
-:root[data-palette='navy'] {
-  --bg-d: #172033;
-  --bg-deep-d: #10172a;
-  --bg-l: #eaeef6;
-  --bg-deep-l: #dde3ef;
-}
-
-:root[data-palette='dusk'] {
-  --bg-d: #26263a;
-  --bg-deep-d: #1c1c2c;
-  --bg-l: #efeef4;
-  --bg-deep-l: #e3e2ec;
-}
-
 @media (prefers-color-scheme: light) {
   :root:not([data-theme='dark']) {
-    --bg: var(--bg-l);
-    --bg-deep: var(--bg-deep-l);
+    --bg: #efeef4;
+    --bg-deep: #e3e2ec;
     --text: #1c2230;
     --text-accent: #9a4f12;
     --rule: rgb(0 0 0 / 0.12);
@@ -54,8 +27,8 @@
 }
 
 :root[data-theme='light'] {
-  --bg: var(--bg-l);
-  --bg-deep: var(--bg-deep-l);
+  --bg: #efeef4;
+  --bg-deep: #e3e2ec;
   --text: #1c2230;
   --text-accent: #9a4f12;
   --rule: rgb(0 0 0 / 0.12);
@@ -136,6 +109,39 @@ nav a:focus-visible::before {
   gap: 4px;
 }
 
+.volume {
+  position: relative;
+}
+
+.volume-panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--dialog-black);
+  border: 2px solid var(--dialog-white);
+  color: var(--dialog-white);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.5rem;
+}
+
+.volume-panel[hidden] { display: none; }
+
+.volume-panel input {
+  width: 120px;
+  margin: 0;
+  accent-color: var(--seat-yellow);
+}
+
+.volume-panel output {
+  min-width: 4ch;
+  text-align: right;
+}
+
 .icon-button {
   display: grid;
   place-items: center;
@@ -162,8 +168,8 @@ nav a:focus-visible::before {
   outline: none;
 }
 
-.sound-toggle[aria-pressed='true'] .muted,
-.sound-toggle[aria-pressed='false'] .waves,
+.sound-toggle[data-muted='false'] .muted,
+.sound-toggle[data-muted='true'] .waves,
 .theme-toggle:not([data-mode='system']) .icon-system,
 .theme-toggle:not([data-mode='light']) .icon-light,
 .theme-toggle:not([data-mode='dark']) .icon-dark {
@@ -239,38 +245,12 @@ h1 {
 
 .dialog :empty { display: none; }
 
-.demo-controls {
-  position: fixed;
-  left: 16px;
-  bottom: 16px;
-  display: flex;
-  gap: 8px;
-}
-
-.palette-button {
-  padding: 8px 10px;
-  font-family: 'Press Start 2P', monospace;
-  font-size: 0.5rem;
-  color: var(--dialog-white);
-  background: var(--dialog-black);
-  border: 2px solid var(--dialog-white);
-  cursor: pointer;
-}
-
-.palette-button:hover,
-.palette-button:focus-visible {
-  color: var(--seat-yellow);
-  border-color: var(--beanie-orange);
-  outline: none;
-}
-
 @media (max-width: 800px) {
   main {
     grid-template-columns: 1fr;
     grid-template-rows: none;
     gap: 32px;
-    /* Bottom room keeps the fixed demo buttons off the last paragraph. */
-    padding: 32px 16px 80px;
+    padding-top: 32px;
   }
 
   .copy,

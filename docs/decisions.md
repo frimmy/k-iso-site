@@ -25,12 +25,12 @@
 
 - **Style:** 90s/early-00s game aesthetic. Press Start 2P for the UI and headings, and a black-box dialog like the one in the GIF. The direction is toward more minimalism.
 - **Body font:** DM Mono, picked over VT323 (too busy), IBM Plex Mono and Pixelify Sans.
-- **Background:** subdued, mature takes on the GIF's blue. Three candidates can be compared with the temporary **BG** button, and one gets picked after feedback.
+- **Background:** Dusk, a subdued blue-violet that echoes the GIF's purple tones: `#26263a` → `#1c1c2c` in dark mode, `#efeef4` → `#e3e2ec` in light. Picked over slate, navy and the original indigo.
 - **Theme:** dark, light and system modes, switched from the header.
 - **Nav:** in the header. Small text, with the current page highlighted.
 - **Layout:** a 3×3 grid under the header, up to 1200px wide. The dialog and body copy fill the top-left 2×2. The GIF (max 450px) sits in the bottom-right cell. On screens under 800px it stacks, with the text first and then the image.
 - **Audio:**
-  - One header toggle controls all sound. It's off on every visit.
+  - The header speaker opens a volume slider that controls the music and the menu sound together. Every visit starts muted, and opening the slider while muted starts the music at 50%. Setting it to 0 mutes.
   - Turning it on plays the music (Jim Lang, "Ice Me Down", looping) and turns on the 8-bit menu sound for hovering over or tabbing to a link.
   - Browsers block audio until the visitor clicks, which is one reason sound starts off.
 - **To check:** the rights to the Jim Lang track (a vinyl rip) and to the "copyright free" 8-bit pack before launch.

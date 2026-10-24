@@ -17,13 +17,21 @@
       <nav data-content="links" aria-label="Main"></nav>
 
       <div class="controls">
-        <button class="icon-button sound-toggle" type="button" aria-label="Sound and music" aria-pressed="false">
-          <svg viewBox="0 0 16 16" aria-hidden="true">
-            <path d="M2 6h3v4H2zM5 5h1v6H5zM6 4h1v8H6zM7 3h1v10H7zM8 2h1v12H8z"/>
-            <path class="waves" d="M10 6h1v4h-1zM12 4h1v8h-1zM14 2h1v12h-1z"/>
-            <path class="muted" d="M10 5h1v1h-1zM11 6h1v1h-1zM12 7h1v2h-1zM13 9h1v1h-1zM14 10h1v1h-1zM14 5h1v1h-1zM13 6h1v1h-1zM11 9h1v1h-1zM10 10h1v1h-1z"/>
-          </svg>
-        </button>
+        <div class="volume">
+          <button class="icon-button sound-toggle" type="button" aria-label="Volume" aria-expanded="false" aria-controls="volume-panel" data-muted="true">
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M2 6h3v4H2zM5 5h1v6H5zM6 4h1v8H6zM7 3h1v10H7zM8 2h1v12H8z"/>
+              <path class="waves" d="M10 6h1v4h-1zM12 4h1v8h-1zM14 2h1v12h-1z"/>
+              <path class="muted" d="M10 5h1v1h-1zM11 6h1v1h-1zM12 7h1v2h-1zM13 9h1v1h-1zM14 10h1v1h-1zM14 5h1v1h-1zM13 6h1v1h-1zM11 9h1v1h-1zM10 10h1v1h-1z"/>
+            </svg>
+          </button>
+
+          <div class="volume-panel" id="volume-panel" hidden>
+            <label for="volume-slider">Vol</label>
+            <input id="volume-slider" type="range" min="0" max="100" step="5" value="0">
+            <output for="volume-slider">0%</output>
+          </div>
+        </div>
 
         <button class="icon-button theme-toggle" type="button" aria-label="Theme: system">
           <svg viewBox="0 0 16 16" aria-hidden="true">
@@ -49,10 +57,6 @@
 
     <img class="hero" src="assets/hero.gif" alt="Pixel-art subway car with a guy in an orange beanie saying hey">
   </main>
-
-  <div class="demo-controls">
-    <button class="palette-button" type="button" aria-live="polite">BG: slate</button>
-  </div>
 
   <script src="content.js"></script>
   <script src="nav.js"></script>

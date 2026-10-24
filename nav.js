@@ -1,14 +1,15 @@
 const nav = document.querySelector('nav');
 const selectSound = new Audio('assets/sounds/menu-select.wav');
-selectSound.volume = 0.4;
-
 const music = new Audio('assets/music/ice-me-down.mp3');
 music.loop = true;
-music.volume = 0.6;
 
 const soundToggle = document.querySelector('.sound-toggle');
-// Starts off every visit: browsers block audio until a click anyway, and surprise music is worse.
-let soundOn = false;
+const volumePanel = document.querySelector('.volume-panel');
+const volumeSlider = document.querySelector('#volume-slider');
+const volumeOutput = volumePanel.querySelector('output');
+const DEFAULT_VOLUME = 50;
+// Starts muted every visit: browsers block audio until a click anyway, and surprise music is worse.
+let volume = 0;
 
 let lastTarget = null;
 
@@ -39,22 +40,33 @@ function select(event) {
 }
 
 function playSelect() {
-  if (!soundOn) return;
+  if (volume === 0) return;
 
   selectSound.currentTime = 0;
   // Browsers block audio until the visitor has clicked or pressed a key on the page.
   selectSound.play().catch(() => {});
 }
 
-function setSound(on) {
-  soundOn = on;
-  soundToggle.setAttribute('aria-pressed', String(on));
+function setVolume(percent) {
+  volume = percent;
+  music.volume = percent / 100;
+  // The menu blip is louder than the track at the same level, so keep it a step under the music.
+  selectSound.volume = (percent / 100) * 0.7;
 
-  if (on) {
-    music.play().catch(() => setSound(false));
-  } else {
+  volumeSlider.value = String(percent);
+  volumeOutput.textContent = `${percent}%`;
+  soundToggle.dataset.muted = String(percent === 0);
+
+  if (percent === 0) {
     music.pause();
+  } else if (music.paused) {
+    music.play().catch(() => setVolume(0));
   }
+}
+
+function setPanelOpen(open) {
+  volumePanel.hidden = !open;
+  soundToggle.setAttribute('aria-expanded', String(open));
 }
 
 function moveFocus(event) {
@@ -75,7 +87,24 @@ nav.addEventListener('focusout', (event) => {
 });
 nav.addEventListener('keydown', moveFocus);
 
-soundToggle.addEventListener('click', () => setSound(!soundOn));
+soundToggle.addEventListener('click', () => {
+  const opening = volumePanel.hidden;
+  setPanelOpen(opening);
+  if (opening && volume === 0) setVolume(DEFAULT_VOLUME);
+});
+
+volumeSlider.addEventListener('input', () => setVolume(Number(volumeSlider.value)));
+
+document.addEventListener('click', (event) => {
+  if (!event.target.closest('.volume')) setPanelOpen(false);
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key !== 'Escape' || volumePanel.hidden) return;
+
+  setPanelOpen(false);
+  soundToggle.focus();
+});
 
 document.addEventListener('content:ready', markCurrent);
 window.addEventListener('hashchange', markCurrent);

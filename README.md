@@ -20,10 +20,6 @@ python3 -m http.server 8000
 
 Then open http://localhost:8000. Opening `index.html` directly from disk shows a blank page, because browsers won't load `content.json` from a `file://` page.
 
-## Comparing background palettes
-
-The **BG** button in the bottom-left corner cycles through the candidate backgrounds: `slate` (the default), `navy`, `dusk` and `original`. It's temporary and comes out once a palette is picked.
-
 ## Hosting
 
 The site is hosted on GitHub Pages: **Settings → Pages → Deploy from branch → `main` / root**.
