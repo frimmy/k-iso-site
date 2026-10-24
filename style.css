@@ -1,13 +1,65 @@
 /* Palette sampled from assets/hero.gif */
 :root {
-  --bg: #1d1b3a;
-  --bg-deep: #141229;
   --car-blue: #5b8fe6;
   --seat-yellow: #f5d90a;
   --beanie-orange: #e8892b;
   --dialog-black: #000;
   --dialog-white: #ededed;
   --pixel: 4px;
+
+  /* Each palette sets a dark (-d) and light (-l) pair; the theme picks which pair is live. */
+  --bg-d: #1e252d;
+  --bg-deep-d: #161b21;
+  --bg-l: #eef1f4;
+  --bg-deep-l: #e2e7ec;
+
+  --bg: var(--bg-d);
+  --bg-deep: var(--bg-deep-d);
+  --text: #e6e8eb;
+  --text-accent: var(--seat-yellow);
+  --rule: rgb(255 255 255 / 0.12);
+  --frame: var(--dialog-white);
+}
+
+:root[data-palette='original'] {
+  --bg-d: #1d1b3a;
+  --bg-deep-d: #141229;
+  --bg-l: #ebeaf6;
+  --bg-deep-l: #dddbf0;
+}
+
+:root[data-palette='navy'] {
+  --bg-d: #172033;
+  --bg-deep-d: #10172a;
+  --bg-l: #eaeef6;
+  --bg-deep-l: #dde3ef;
+}
+
+:root[data-palette='dusk'] {
+  --bg-d: #26263a;
+  --bg-deep-d: #1c1c2c;
+  --bg-l: #efeef4;
+  --bg-deep-l: #e3e2ec;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) {
+    --bg: var(--bg-l);
+    --bg-deep: var(--bg-deep-l);
+    --text: #1c2230;
+    --text-accent: #9a4f12;
+    --rule: rgb(0 0 0 / 0.12);
+    --frame: #1c2230;
+  }
+}
+
+:root[data-theme='light'] {
+  --bg: var(--bg-l);
+  --bg-deep: var(--bg-deep-l);
+  --text: #1c2230;
+  --text-accent: #9a4f12;
+  --rule: rgb(0 0 0 / 0.12);
+  --frame: #1c2230;
 }
 
 * { box-sizing: border-box; }
@@ -19,10 +71,100 @@ body {
   display: flex;
   flex-direction: column;
   background: linear-gradient(var(--bg), var(--bg-deep));
-  color: var(--dialog-white);
+  color: var(--text);
   font-family: 'VT323', monospace;
   font-size: 1.5rem;
   line-height: 1.3;
+}
+
+header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 24px;
+  width: 100%;
+  max-width: 750px;
+  margin: 0 auto;
+  padding: 16px 16px 12px;
+  border-bottom: 1px solid var(--rule);
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+}
+
+nav a {
+  position: relative;
+  padding: 6px 2px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.625rem;
+  color: var(--text);
+  text-decoration: none;
+}
+
+nav a:hover,
+nav a:focus-visible {
+  color: var(--text-accent);
+  outline: none;
+}
+
+nav a[aria-current='page'] {
+  color: var(--text-accent);
+  box-shadow: inset 0 -2px 0 var(--beanie-orange);
+}
+
+nav a::before {
+  content: '▶';
+  position: absolute;
+  right: calc(100% + 4px);
+  color: transparent;
+}
+
+nav a:hover::before,
+nav a:focus-visible::before {
+  color: var(--beanie-orange);
+}
+
+.controls {
+  display: flex;
+  gap: 4px;
+}
+
+.icon-button {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  background: none;
+  border: 2px solid transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.icon-button svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+  shape-rendering: crispEdges;
+}
+
+.icon-button:hover,
+.icon-button:focus-visible {
+  color: var(--text-accent);
+  border-color: var(--beanie-orange);
+  outline: none;
+}
+
+.sound-toggle[aria-pressed='true'] .muted,
+.sound-toggle[aria-pressed='false'] .waves,
+.theme-toggle:not([data-mode='system']) .icon-system,
+.theme-toggle:not([data-mode='light']) .icon-light,
+.theme-toggle:not([data-mode='dark']) .icon-dark {
+  display: none;
 }
 
 main {
@@ -38,8 +180,7 @@ main {
   width: 100%;
   height: auto;
   image-rendering: pixelated;
-  border: var(--pixel) solid var(--dialog-white);
-  box-shadow: 0 0 0 var(--pixel) var(--dialog-black), 8px 8px 0 var(--pixel) var(--dialog-black);
+  border: 2px solid var(--frame);
 }
 
 /* Mirrors the black-box/white-border dialog in the GIF */
@@ -48,9 +189,10 @@ main {
   flex-direction: column;
   gap: 16px;
   max-width: 720px;
-  margin: 40px auto 0;
+  margin: 32px auto 0;
   padding: 24px 28px;
   background: var(--dialog-black);
+  color: var(--dialog-white);
   border: var(--pixel) solid var(--dialog-white);
   text-align: center;
 }
@@ -73,97 +215,47 @@ h1 {
 
 .dialog :empty { display: none; }
 
-footer {
-  position: relative;
-  border-top: var(--pixel) solid var(--car-blue);
-  background: var(--bg-deep);
-  padding: 20px 16px;
-}
-
-nav {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 12px clamp(8px, 4vw, 40px);
-}
-
-nav a {
-  font-family: 'Press Start 2P', monospace;
-  font-size: clamp(0.65rem, 2.5vw, 0.8rem);
-  color: var(--dialog-white);
-  text-decoration: none;
-  padding: 8px 4px;
-  position: relative;
-}
-
-nav a:hover,
-nav a:focus-visible {
-  color: var(--seat-yellow);
-  outline: none;
-}
-
-nav a[aria-current='page'] {
-  color: var(--seat-yellow);
-  box-shadow: inset 0 calc(-1 * var(--pixel)) 0 var(--beanie-orange);
-}
-
-nav a::before {
-  content: '▶';
-  position: absolute;
-  right: calc(100% + 4px);
-  color: transparent;
-}
-
-nav a:hover::before,
-nav a:focus-visible::before {
-  color: var(--beanie-orange);
-}
-
-.sound-toggle {
-  position: absolute;
-  top: 50%;
+.palette-picker {
+  position: fixed;
   right: 16px;
-  transform: translateY(-50%);
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  padding: 2px;
-  background: none;
-  border: var(--pixel) solid transparent;
+  bottom: 16px;
+  display: flex;
+  gap: 4px;
+  padding: 6px;
+  background: var(--dialog-black);
+  border: 2px solid var(--dialog-white);
+}
+
+.palette-picker button {
+  padding: 6px 8px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.5rem;
   color: var(--dialog-white);
+  background: none;
+  border: 2px solid transparent;
   cursor: pointer;
 }
 
-.sound-toggle svg {
-  width: 100%;
-  height: 100%;
-  fill: currentColor;
-  shape-rendering: crispEdges;
-}
-
-.sound-toggle:hover,
-.sound-toggle:focus-visible {
+.palette-picker button[aria-pressed='true'] {
   color: var(--seat-yellow);
   border-color: var(--beanie-orange);
-  outline: none;
 }
 
-.sound-toggle[aria-pressed='true'] .muted,
-.sound-toggle[aria-pressed='false'] .waves {
-  display: none;
+@media (max-width: 520px) {
+  header { justify-content: center; }
+
+  nav {
+    order: 2;
+    justify-content: center;
+    gap: 8px 16px;
+    width: 100%;
+  }
+
+  .controls { margin-left: auto; }
 }
 
-@media (max-width: 480px) {
-  footer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-  }
+@media (max-width: 360px) {
+  nav { gap: 8px 12px; }
 
-  .sound-toggle {
-    position: static;
-    transform: none;
-  }
+  nav a { font-size: 0.5625rem; }
 }

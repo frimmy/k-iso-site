@@ -1,20 +1,25 @@
 const nav = document.querySelector('nav');
-const selectSound = new Audio('assets/sounds/menu-select.mp3');
-selectSound.volume = 0.5;
+const selectSound = new Audio('assets/sounds/menu-select.wav');
+selectSound.volume = 0.4;
+
+const music = new Audio('assets/music/ice-me-down.mp3');
+music.loop = true;
+music.volume = 0.6;
 
 const soundToggle = document.querySelector('.sound-toggle');
-const SOUND_PREF_KEY = 'k-iso:sound';
-let soundOn = true;
+// Starts off every visit: browsers block audio until a click anyway, and surprise music is worse.
+let soundOn = false;
 
 let lastTarget = null;
 
 const links = () => [...nav.querySelectorAll('a')];
-const normalize = (url) => url.replace(/index\.html(?=#|$)/, '');
+// Ignores the query string so demo links like ?palette=navy still highlight the current page.
+const pageKey = ({ pathname, hash }) => pathname.replace(/index\.html$/, '') + hash;
 
 function markCurrent() {
-  const here = normalize(location.href);
+  const here = pageKey(location);
   links().forEach((link) => {
-    if (normalize(link.href) === here) {
+    if (pageKey(link) === here) {
       link.setAttribute('aria-current', 'page');
     } else {
       link.removeAttribute('aria-current');
@@ -44,6 +49,12 @@ function playSelect() {
 function setSound(on) {
   soundOn = on;
   soundToggle.setAttribute('aria-pressed', String(on));
+
+  if (on) {
+    music.play().catch(() => setSound(false));
+  } else {
+    music.pause();
+  }
 }
 
 function moveFocus(event) {
@@ -64,18 +75,7 @@ nav.addEventListener('focusout', (event) => {
 });
 nav.addEventListener('keydown', moveFocus);
 
-// Storage can throw in private windows or with site data blocked; the toggle still works per visit.
-try {
-  setSound(localStorage.getItem(SOUND_PREF_KEY) !== 'off');
-} catch {}
-
-soundToggle.addEventListener('click', () => {
-  setSound(!soundOn);
-  playSelect();
-  try {
-    localStorage.setItem(SOUND_PREF_KEY, soundOn ? 'on' : 'off');
-  } catch {}
-});
+soundToggle.addEventListener('click', () => setSound(!soundOn));
 
 document.addEventListener('content:ready', markCurrent);
 window.addEventListener('hashchange', markCurrent);

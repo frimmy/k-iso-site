@@ -4,6 +4,7 @@
   "intro": "",
   "links": [
     { "label": "Home", "url": "./" },
+    { "label": "Shows", "url": "#shows" },
     { "label": "Projects", "url": "#projects" },
     { "label": "Contact", "url": "#contact" }
   ]
