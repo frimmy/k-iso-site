@@ -24,7 +24,7 @@
 ## Look and sound
 
 - **Style:** 90s/early-00s game aesthetic. Press Start 2P for the UI and headings, and a black-box dialog like the one in the GIF. The direction is toward more minimalism.
-- **Body font:** VT323 reads as too busy. Candidates (VT323, IBM Plex Mono, DM Mono, Pixelify Sans) can be compared with the temporary **Font** button. Once one is picked, drop the others from the Google Fonts link.
+- **Body font:** DM Mono, picked over VT323 (too busy), IBM Plex Mono and Pixelify Sans.
 - **Background:** subdued, mature takes on the GIF's blue. Three candidates can be compared with the temporary **BG** button, and one gets picked after feedback.
 - **Theme:** dark, light and system modes, switched from the header.
 - **Nav:** in the header. Small text, with the current page highlighted.

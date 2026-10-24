@@ -1,7 +1,6 @@
 const THEME_KEY = 'k-iso:theme';
 const THEMES = ['system', 'light', 'dark'];
 const PALETTES = ['original', 'slate', 'navy', 'dusk'];
-const FONTS = ['vt323', 'plex', 'dm-mono', 'pixelify'];
 
 const root = document.documentElement;
 
@@ -28,9 +27,8 @@ function applyTheme(theme) {
   }
 }
 
-// Temporary demo controls for comparing backgrounds and body fonts; remove once both are picked.
+// Temporary demo control for comparing backgrounds; remove once a palette is picked.
 let currentPalette = 'slate';
-let currentFont = 'vt323';
 
 function applyPalette(palette) {
   currentPalette = palette;
@@ -40,27 +38,13 @@ function applyPalette(palette) {
   if (button) button.textContent = `BG: ${palette}`;
 }
 
-function applyFont(font) {
-  currentFont = font;
-  root.dataset.font = font;
-
-  const button = document.querySelector('.font-button');
-  if (button) button.textContent = `Font: ${font}`;
-}
-
 let currentTheme = savedTheme();
 applyTheme(currentTheme);
 applyPalette(currentPalette);
-applyFont(currentFont);
 
 document.addEventListener('DOMContentLoaded', () => {
   applyTheme(currentTheme);
   applyPalette(currentPalette);
-  applyFont(currentFont);
-
-  document.querySelector('.font-button').addEventListener('click', () => {
-    applyFont(FONTS[(FONTS.indexOf(currentFont) + 1) % FONTS.length]);
-  });
 
   document.querySelector('.palette-button').addEventListener('click', () => {
     applyPalette(PALETTES[(PALETTES.indexOf(currentPalette) + 1) % PALETTES.length]);
