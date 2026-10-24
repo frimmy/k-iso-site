@@ -27,6 +27,7 @@
 - **Background:** subdued, mature takes on the GIF's blue. Three candidates can be compared with the temporary **BG** button, and one gets picked after feedback.
 - **Theme:** dark, light and system modes, switched from the header.
 - **Nav:** in the header. Small text, with the current page highlighted.
+- **Layout:** two columns up to 1200px wide. The dialog and body copy take the left two-thirds, and the GIF (max 450px) is centered in the right third. On screens under 800px it stacks, with the image on top.
 - **Audio:**
   - One header toggle controls all sound. It's off on every visit.
   - Turning it on plays the music (Jim Lang, "Ice Me Down", looping) and turns on the 8-bit menu sound for hovering over or tabbing to a link.

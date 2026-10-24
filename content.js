@@ -8,10 +8,16 @@ fetch('content.json')
       if (value === undefined) return;
 
       if (Array.isArray(value)) {
-        el.replaceChildren(...value.map(({ label, url }) => {
+        el.replaceChildren(...value.map((item) => {
+          if (typeof item === 'string') {
+            const paragraph = document.createElement('p');
+            paragraph.textContent = item;
+            return paragraph;
+          }
+
           const link = document.createElement('a');
-          link.href = url;
-          link.textContent = label;
+          link.href = item.url;
+          link.textContent = item.label;
           return link;
         }));
       } else {

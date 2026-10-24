@@ -13,35 +13,41 @@
 </head>
 <body>
   <header>
-    <nav data-content="links" aria-label="Main"></nav>
+    <div class="header-inner">
+      <nav data-content="links" aria-label="Main"></nav>
 
-    <div class="controls">
-      <button class="icon-button sound-toggle" type="button" aria-label="Sound and music" aria-pressed="false">
-        <svg viewBox="0 0 16 16" aria-hidden="true">
-          <path d="M2 6h3v4H2zM5 5h1v6H5zM6 4h1v8H6zM7 3h1v10H7zM8 2h1v12H8z"/>
-          <path class="waves" d="M10 6h1v4h-1zM12 4h1v8h-1zM14 2h1v12h-1z"/>
-          <path class="muted" d="M10 5h1v1h-1zM11 6h1v1h-1zM12 7h1v2h-1zM13 9h1v1h-1zM14 10h1v1h-1zM14 5h1v1h-1zM13 6h1v1h-1zM11 9h1v1h-1zM10 10h1v1h-1z"/>
-        </svg>
-      </button>
+      <div class="controls">
+        <button class="icon-button sound-toggle" type="button" aria-label="Sound and music" aria-pressed="false">
+          <svg viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M2 6h3v4H2zM5 5h1v6H5zM6 4h1v8H6zM7 3h1v10H7zM8 2h1v12H8z"/>
+            <path class="waves" d="M10 6h1v4h-1zM12 4h1v8h-1zM14 2h1v12h-1z"/>
+            <path class="muted" d="M10 5h1v1h-1zM11 6h1v1h-1zM12 7h1v2h-1zM13 9h1v1h-1zM14 10h1v1h-1zM14 5h1v1h-1zM13 6h1v1h-1zM11 9h1v1h-1zM10 10h1v1h-1z"/>
+          </svg>
+        </button>
 
-      <button class="icon-button theme-toggle" type="button" aria-label="Theme: system">
-        <svg viewBox="0 0 16 16" aria-hidden="true">
-          <path class="icon-system" d="M1 2h14v1H1zM1 11h14v1H1zM1 3h1v8H1zM14 3h1v8h-1zM8 3h6v8H8zM7 12h2v2H7zM5 14h6v1H5z"/>
-          <path class="icon-light" d="M5 5h6v6H5zM7 1h2v2H7zM7 13h2v2H7zM1 7h2v2H1zM13 7h2v2h-2zM3 3h2v2H3zM11 3h2v2h-2zM3 11h2v2H3zM11 11h2v2h-2z"/>
-          <path class="icon-dark" d="M6 2h4v1H6zM4 3h3v1H4zM3 4h3v1H3zM2 5h3v6H2zM3 11h3v1H3zM4 12h3v1H4zM6 13h4v1H6zM12 4h1v1h-1z"/>
-        </svg>
-      </button>
+        <button class="icon-button theme-toggle" type="button" aria-label="Theme: system">
+          <svg viewBox="0 0 16 16" aria-hidden="true">
+            <path class="icon-system" d="M1 2h14v1H1zM1 11h14v1H1zM1 3h1v8H1zM14 3h1v8h-1zM8 3h6v8H8zM7 12h2v2H7zM5 14h6v1H5z"/>
+            <path class="icon-light" d="M5 5h6v6H5zM7 1h2v2H7zM7 13h2v2H7zM1 7h2v2H1zM13 7h2v2h-2zM3 3h2v2H3zM11 3h2v2h-2zM3 11h2v2H3zM11 11h2v2h-2z"/>
+            <path class="icon-dark" d="M6 2h4v1H6zM4 3h3v1H4zM3 4h3v1H3zM2 5h3v6H2zM3 11h3v1H3zM4 12h3v1H4zM6 13h4v1H6zM12 4h1v1h-1z"/>
+          </svg>
+        </button>
+      </div>
     </div>
   </header>
 
   <main>
-    <img class="hero" src="assets/hero.gif" alt="Pixel-art subway car with a guy in an orange beanie saying hey">
+    <div class="copy">
+      <section class="dialog">
+        <h1 data-content="title"></h1>
+        <p class="tagline" data-content="tagline"></p>
+        <p data-content="intro"></p>
+      </section>
 
-    <section class="dialog">
-      <h1 data-content="title"></h1>
-      <p class="tagline" data-content="tagline"></p>
-      <p data-content="intro"></p>
-    </section>
+      <div class="body-copy" data-content="body"></div>
+    </div>
+
+    <img class="hero" src="assets/hero.gif" alt="Pixel-art subway car with a guy in an orange beanie saying hey">
   </main>
 
   <button class="palette-button" type="button" aria-live="polite">BG: slate</button>
