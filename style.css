@@ -9,6 +9,9 @@
 
   --bg: #26263a;
   --bg-deep: #1c1c2c;
+  /* Lifted tints of the Dusk background, readable on the black dialog. */
+  --dusk-tint: #dcd9ee;
+  --dusk-shadow: #4a4770;
   --text: #e6e8eb;
   --text-accent: var(--seat-yellow);
   --rule: rgb(255 255 255 / 0.12);
@@ -231,8 +234,8 @@ h1 {
   margin: 0;
   font-family: 'Press Start 2P', monospace;
   font-size: clamp(1.25rem, 4vw, 2rem);
-  color: var(--seat-yellow);
-  text-shadow: var(--pixel) var(--pixel) 0 var(--beanie-orange);
+  color: var(--dusk-tint);
+  text-shadow: var(--pixel) var(--pixel) 0 var(--dusk-shadow);
   letter-spacing: 2px;
 }
 
