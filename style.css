@@ -3,15 +3,16 @@
   --car-blue: #5b8fe6;
   --seat-yellow: #f5d90a;
   --beanie-orange: #e8892b;
-  --dialog-black: #000;
   --dialog-white: #ededed;
   --pixel: 4px;
 
   --bg: #26263a;
   --bg-deep: #1c1c2c;
-  /* Lifted tints of the Dusk background, readable on the black dialog. */
-  --dusk-tint: #dcd9ee;
-  --dusk-shadow: #4a4770;
+  --panel-bg: #33324d;
+  --panel-border: #4a4770;
+  --panel-text: #e6e8eb;
+  --title: #dcd9ee;
+  --title-shadow: #1c1c2c;
   --text: #e6e8eb;
   --text-accent: var(--seat-yellow);
   --rule: rgb(255 255 255 / 0.12);
@@ -26,6 +27,11 @@
     --text-accent: #9a4f12;
     --rule: rgb(0 0 0 / 0.12);
     --frame: #1c2230;
+    --panel-bg: #f8f7fc;
+    --panel-border: #c9c6dc;
+    --panel-text: #1c2230;
+    --title: #3a3760;
+    --title-shadow: #c9c6dc;
   }
 }
 
@@ -36,6 +42,11 @@
   --text-accent: #9a4f12;
   --rule: rgb(0 0 0 / 0.12);
   --frame: #1c2230;
+  --panel-bg: #f8f7fc;
+  --panel-border: #c9c6dc;
+  --panel-text: #1c2230;
+  --title: #3a3760;
+  --title-shadow: #c9c6dc;
 }
 
 * { box-sizing: border-box; }
@@ -125,9 +136,9 @@ nav a:focus-visible::before {
   align-items: center;
   gap: 10px;
   padding: 10px 12px;
-  background: var(--dialog-black);
-  border: 2px solid var(--dialog-white);
-  color: var(--dialog-white);
+  background: var(--panel-bg);
+  border: 2px solid var(--panel-border);
+  color: var(--panel-text);
   font-family: 'Press Start 2P', monospace;
   font-size: 0.5rem;
 }
@@ -218,15 +229,14 @@ main {
 
 .body-copy p:last-child { margin-bottom: 0; }
 
-/* Mirrors the black-box/white-border dialog in the GIF */
 .dialog {
   display: flex;
   flex-direction: column;
   gap: 16px;
   padding: 24px 28px;
-  background: var(--dialog-black);
-  color: var(--dialog-white);
-  border: var(--pixel) solid var(--dialog-white);
+  background: var(--panel-bg);
+  color: var(--panel-text);
+  border: 2px solid var(--panel-border);
   text-align: center;
 }
 
@@ -234,8 +244,8 @@ h1 {
   margin: 0;
   font-family: 'Press Start 2P', monospace;
   font-size: clamp(1.25rem, 4vw, 2rem);
-  color: var(--dusk-tint);
-  text-shadow: var(--pixel) var(--pixel) 0 var(--dusk-shadow);
+  color: var(--title);
+  text-shadow: var(--pixel) var(--pixel) 0 var(--title-shadow);
   letter-spacing: 2px;
 }
 

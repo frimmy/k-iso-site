@@ -23,7 +23,7 @@
 
 ## Look and sound
 
-- **Style:** 90s/early-00s game aesthetic. Press Start 2P for the UI and headings, and a black-box dialog like the one in the GIF. The direction is toward more minimalism.
+- **Style:** 90s/early-00s game aesthetic. Press Start 2P for the UI and headings, and a dialog box inspired by the one in the GIF. It's a raised Dusk panel (`#33324d`, with a thin `#4a4770` border) rather than black, and the title uses Dusk tints instead of yellow and orange. The volume panel uses the same panel style. The direction is toward more minimalism.
 - **Body font:** DM Mono, picked over VT323 (too busy), IBM Plex Mono and Pixelify Sans.
 - **Background:** Dusk, a subdued blue-violet that echoes the GIF's purple tones: `#26263a` → `#1c1c2c` in dark mode, `#efeef4` → `#e3e2ec` in light. Picked over slate, navy and the original indigo.
 - **Theme:** dark, light and system modes, switched from the header.
